@@ -1,18 +1,18 @@
-import PropTypes from 'prop-types';
-import React from 'react';
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+import PropTypes from 'prop-types'
+import React from 'react'
 
-
-
-const Todo = ({ onClick, completed, text }) => (
+const Todo = ({onClick, completed, text}) => (
   <li
     onClick={onClick}
     style={{
-      textDecoration: completed ? "line-through" : "none",
+      textDecoration: completed ? 'line-through' : 'none',
     }}
   >
     {text}
   </li>
-);
+)
 
 Todo.propTypes = {
   completed: PropTypes.bool.isRequired,
@@ -20,4 +20,4 @@ Todo.propTypes = {
   text: PropTypes.string.isRequired,
 }
 
-export default Todo;
+export default Todo

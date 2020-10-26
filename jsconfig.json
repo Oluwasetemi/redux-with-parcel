@@ -3,8 +3,8 @@
     "checkJs": true,
     "baseUrl": "./",
     "paths": {
-      "*": ["src/*", "test/*"]
+      "*": ["src/*"]
     }
   },
-  "include": ["src", "test/*", "@types"]
+  "include": ["src", "@types"]
 }
