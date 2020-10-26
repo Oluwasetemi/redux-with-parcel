@@ -11,6 +11,7 @@ const compiler = webpack(config)
 
 // Tell express to use the webpack-dev-middleware and use the webpack.config.js
 // configuration file as a base.
+app.use(require("webpack-hot-middleware")(compiler));
 app.use(
   webpackDevMiddleware(compiler, {
     noInfo: true,
@@ -19,11 +20,11 @@ app.use(
 )
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'))
+  res.sendFile(path.join(__dirname, '/dist/index.html'))
 })
 
 // Serve the files on port 3000.
-app.listen(3000, (error) => {
+app.listen(port, (error) => {
   if (error) {
     console.error(error)
   } else {
