@@ -1,7 +1,7 @@
 const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const {CleanWebpackPlugin} = require('clean-webpack-plugin')
+const webpack = require('webpack')
 
 module.exports = {
   mode: 'development',
@@ -14,18 +14,19 @@ module.exports = {
     compress: true,
     port: 1234,
     hot: true,
-    publicPath: '/dist'
+    publicPath: '/dist',
+    historyApiFallback: true,
   },
   plugins: [
     new CleanWebpackPlugin({dry: true}),
     new HtmlWebpackPlugin({
-      template: "./index.html"
+      template: './index.html',
     }),
     // OccurrenceOrderPlugin is needed for webpack 1.x only
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     // Use NoErrorsPlugin for webpack 1.x
-    new webpack.NoEmitOnErrorsPlugin()
+    new webpack.NoEmitOnErrorsPlugin(),
   ],
 
   module: {

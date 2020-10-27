@@ -4,20 +4,23 @@ import TodoList from './TodoList'
 
 const getVisibleTodos = (todos, filter) => {
   switch (filter) {
-    case 'SHOW_ALL':
+    case 'all':
       return todos
-    case 'SHOW_COMPLETED':
+    case 'completed':
       return todos.filter((t) => t.completed)
-    case 'SHOW_ACTIVE':
+    case 'active':
       return todos.filter((t) => !t.completed)
     default:
-      break
+      throw new Error(`Unknown filter: ${filter}.`)
   }
 }
 
-const mapStateToTodoListProps = (state) => ({
-  todos: getVisibleTodos(state.todos, state.visibilityFilter),
-})
+const mapStateToTodoListProps = (state, ownProps) => {
+  console.log(ownProps)
+  return {
+    todos: getVisibleTodos(state.todos, ownProps.filter),
+  }
+}
 
 const mapDispatchToTodoListProps = (dispatch) => ({
   onTodoClick: (id) => dispatch(toggleTodo(id)),
