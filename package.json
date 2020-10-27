@@ -37,7 +37,8 @@
       "no-console": "off",
       "jsx-a11y/accessible-emoji": "off",
       "consistent-return": "off"
-    }
+    },
+    "root": true
   },
   "eslintIgnore": [
     "node_modules",
