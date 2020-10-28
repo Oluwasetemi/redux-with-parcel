@@ -3,7 +3,8 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router'
 import * as actions from '../actions'
-import {getIsFetching, getVisibleTodos} from '../reducers'
+import {getErrorMessage, getIsFetching, getVisibleTodos} from '../reducers'
+import FetchError from './FetchError'
 import TodoList from './TodoList'
 
 class VisibleTodoList extends Component {
@@ -23,9 +24,15 @@ class VisibleTodoList extends Component {
   }
 
   render() {
-    const {isFetching, toggleTodo, todos} = this.props
+    const {isFetching, toggleTodo, todos, errorMessage} = this.props
     if (isFetching && !todos.length) {
       return <p>Loading...</p>
+    }
+
+    if (errorMessage && !todos.length) {
+      return (
+        <FetchError message={errorMessage} onRetry={() => this.fetchData()} />
+      )
     }
 
     return <TodoList todos={todos} onTodoClick={toggleTodo} />
@@ -34,6 +41,7 @@ class VisibleTodoList extends Component {
 
 VisibleTodoList.propTypes = {
   filter: PropTypes.oneOf(['all', 'active', 'completed']).isRequired,
+  errorMessage: PropTypes.string,
   todos: PropTypes.array.isRequired,
   isFetching: PropTypes.bool.isRequired,
   fetchTodos: PropTypes.func.isRequired,
@@ -44,6 +52,7 @@ const mapStateToProps = (state, {match}) => {
   const filter = match.params.filter || 'all'
   return {
     isFetching: getIsFetching(state, filter),
+    errorMessage: getErrorMessage(state, filter),
     todos: getVisibleTodos(state, filter),
     filter,
   }
