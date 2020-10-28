@@ -6,7 +6,7 @@ import VisibleTodoList from './VisibleTodoList'
 function TodoApp() {
   return (
     <>
-      <h1>Todo App 3</h1>
+      <h1>Todo App 👌</h1>
       <AddTodo />
       <VisibleTodoList />
       <Footer />

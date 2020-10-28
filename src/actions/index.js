@@ -25,6 +25,11 @@ export const fetchTodos = (filter) => (dispatch, getState) => {
     return Promise.resolve()
   }
 
+  dispatch({
+    type: 'FETCH_TODOS_REQUEST',
+    filter,
+  })
+
   return api.fetchTodos(filter).then(
     (response) => {
       dispatch({

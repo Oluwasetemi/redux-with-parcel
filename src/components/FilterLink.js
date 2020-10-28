@@ -15,6 +15,7 @@ const FilterLink = ({filter, children}) => {
         to={to}
         style={{
           textDecoration: isActive ? 'none' : 'underline',
+          color: 'black',
         }}
       >
         {children}
